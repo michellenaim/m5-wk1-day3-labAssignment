@@ -5,6 +5,7 @@
   height: 6rem;
   align-items: center;
   padding: 0 2rem;
+  color: white;
 }
 
 .item {
@@ -47,4 +48,32 @@
 .number-cart {
   margin: auto;
   margin-left: 0.7rem;
+}
+
+.increment-buttons {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 6rem;
+}
+
+.increment-buttons button {
+  height: 30px;
+  width: 45px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.cart-bold {
+  font-weight: bold;
+}
+
+.cart-title {
+  text-align: center;
+  width: 150px;
+  margin-top: 5px;
 }
