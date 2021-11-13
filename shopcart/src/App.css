@@ -77,3 +77,23 @@ a {
   width: 150px;
   margin-top: 5px;
 }
+
+.checkout-btn {
+  margin-top: 1.5rem;
+}
+
+.cart-items-title {
+  margin: 2rem;
+}
+
+.cart-number-items {
+  margin: 0 6rem;
+}
+
+.cart-btn {
+  margin-top: 2rem;
+}
+
+.card-text form {
+  width: 250px;
+}

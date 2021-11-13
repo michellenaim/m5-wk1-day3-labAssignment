@@ -7,6 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Home from "./Home";
 import { Cart } from "./Cart";
+import Login from "./Login";
 
 export const NavBar = (props) => {
   return (
@@ -24,12 +25,7 @@ export const NavBar = (props) => {
             <Link to="/cart">
               <FontAwesomeIcon icon={faShoppingCart} />
             </Link>
-            <p className="number-cart">
-              {props.itemList
-                .map((item) => item.quantity)
-                .reduce((acc, curr) => acc + curr, 0)}{" "}
-              items
-            </p>
+            <p className="number-cart">{props.totalQuantity} items</p>
           </div>
         </div>
 
@@ -41,8 +37,14 @@ export const NavBar = (props) => {
               handleDecrease={props.handleDecrease}
             />
           </Route>
-          <Route path="/Cart">
-            <Cart itemList={props.itemList} />
+          <Route path="/cart">
+            <Cart
+              itemList={props.itemList}
+              totalQuantity={props.totalQuantity}
+            />
+          </Route>
+          <Route path="/signin">
+            <Login />
           </Route>
         </Switch>
       </Router>

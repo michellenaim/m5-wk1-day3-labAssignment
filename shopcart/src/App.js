@@ -31,6 +31,9 @@ class ShoppingApp extends Component {
           itemList={this.state.items}
           handleIncrease={this.handleIncrease}
           handleDecrease={this.handleDecrease}
+          totalQuantity={this.state.items
+            .map((item) => item.quantity)
+            .reduce((acc, curr) => acc + curr, 0)}
         />
       </div>
     );
