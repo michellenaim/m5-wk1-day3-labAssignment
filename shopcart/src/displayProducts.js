@@ -15,49 +15,69 @@ export const Items = (props) => {
   };
 
   return (
-    <ListGroup className="items">
-      {props.itemList.map((item) => (
-        <ListGroupItem key={item.id} className="item">
-          <div className="item-title-img">
-            <h4>{item.title}</h4>
+    <>
+      <div className="sort-price">
+        <p>
+          Sort Price by
+          <select
+            name="sort"
+            id="sort-select"
+            onChange={(e) => props.sortPrice(props.itemList, e.target.value)}
+          >
+            <option value="normal">Normal</option>
+            <option value="lowest">Lowest</option>
+            <option value="highest">Highest</option>
+          </select>
+        </p>
+      </div>
+      <ListGroup className="items">
+        {props.itemList.map((item) => (
+          <ListGroupItem key={item.id} className="item">
+            <div className="item-title-img">
+              <div className="prod-title">
+                <h4>{item.title}</h4>
+                <p>${item.price}</p>
+              </div>
+
+              <img
+                src={item.picture}
+                alt={item.title}
+                height="150"
+                width="150"
+                onClick={() => handleShow(item)}
+              />
+            </div>
+            <div className="increment-buttons">
+              <button onClick={() => props.handleIncrease(item)}>
+                <FontAwesomeIcon icon={faPlusCircle} />
+              </button>
+              <button onClick={() => props.handleDecrease(item)}>
+                <FontAwesomeIcon icon={faMinusCircle} />
+              </button>
+            </div>
+            <div className="item-quantity">
+              <span className="quantity">{item.quantity}</span>
+              <p className="quantity-text">quantity</p>
+            </div>
+          </ListGroupItem>
+        ))}
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>{showImage.title}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
             <img
-              src={item.picture}
-              alt={item.title}
-              height="150"
-              width="150"
-              onClick={() => handleShow(item)}
+              src={showImage.picture}
+              width="350"
+              alt={showImage.title}
+              className="mx-5"
             />
-          </div>
-          <div className="increment-buttons">
-            <button onClick={() => props.handleIncrease(item)}>
-              <FontAwesomeIcon icon={faPlusCircle} />
-            </button>
-            <button onClick={() => props.handleDecrease(item)}>
-              <FontAwesomeIcon icon={faMinusCircle} />
-            </button>
-          </div>
-          <div className="item-quantity">
-            <span className="quantity">{item.quantity}</span>
-            <p className="quantity-text">quantity</p>
-          </div>
-        </ListGroupItem>
-      ))}
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{showImage.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <img
-            src={showImage.picture}
-            width="350"
-            alt={showImage.title}
-            className="mx-5"
-          />
-          <p>
-            <span className="text-dark">Ratings:</span> {showImage.rating}/5
-          </p>
-        </Modal.Body>
-      </Modal>
-    </ListGroup>
+            <p>
+              <span className="text-dark">Ratings:</span> {showImage.rating}/5
+            </p>
+          </Modal.Body>
+        </Modal>
+      </ListGroup>
+    </>
   );
 };

@@ -35,6 +35,7 @@ export const NavBar = (props) => {
               itemList={props.itemList}
               handleIncrease={props.handleIncrease}
               handleDecrease={props.handleDecrease}
+              sortPrice={props.sortPrice}
             />
           </Route>
           <Route path="/cart">

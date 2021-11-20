@@ -9,6 +9,7 @@ class ShoppingApp extends Component {
     super(props);
     this.state = {
       items: products,
+      sortType: "normal",
     };
   }
 
@@ -24,6 +25,22 @@ class ShoppingApp extends Component {
     }
   };
 
+  sortPrice = (items, sortType) => {
+    items.sort((a, b) => {
+      switch (sortType) {
+        case "normal":
+          return a.id > b.id ? 1 : -1;
+        case "lowest":
+          return a.price < b.price ? -1 : 1;
+        case "highest":
+          return a.price < b.price ? 1 : -1;
+        default:
+          return a.id > b.id ? 1 : -1;
+      }
+    });
+    this.setState({ sortType });
+  };
+
   render() {
     return (
       <div>
@@ -34,6 +51,7 @@ class ShoppingApp extends Component {
           totalQuantity={this.state.items
             .map((item) => item.quantity)
             .reduce((acc, curr) => acc + curr, 0)}
+          sortPrice={this.sortPrice}
         />
       </div>
     );
